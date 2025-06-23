@@ -1,0 +1,72 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+我已阅读了开发规范，以下是基于规范的总结：
+
+## 开发规范要点
+
+### 基本规范
+开发流程：先看文件结构，看文件是否已存在，存在则不创建新的，避免重复
+
+### 1. 代码规范
+- 使用Vue3 `<script setup>` 语法
+- 使用组合式API (Composition API)
+- 使用TypeScript提供类型支持
+- 使用ESLint和Prettier保证代码质量
+
+### 2. 命名规范
+- 组件名：PascalCase (如VirtualElTree.vue)
+- 组件实例：camelCase (如treeRef)
+- 组合式函数：useXxx形式 (如useVirtualTree)
+- 事件名：kebab-case (如node-click)
+- 属性名：camelCase (如nodeHeight)
+- CSS类名：kebab-case (如.virtual-tree)
+
+### 3. 组件设计
+- props设计：提供合理默认值，使用验证，分类管理
+- 事件设计：使用kebab-case，提供丰富参数
+- 插槽设计：提供默认和命名插槽，增强可定制性
+
+### 4. 性能优化
+- 虚拟滚动只渲染可视区域节点
+- 使用`v-once`、`v-memo`减少更新
+- 响应式优化：大型数组使用shallowRef
+- 事件优化：使用委托和节流/防抖
+
+### 5. 样式规范
+- 使用BEM命名规范
+- 组件样式使用scoped或CSS模块化
+- 利用SCSS嵌套提高可读性
+
+### 文件组织规范
+
+```text
+src/
+└── components/
+    └── VirtualElTree/
+        ├── index.vue            # 入口组件
+        ├── VirtualTreeNode.vue  # 子组件
+        ├── styles/
+        │   ├── index.scss       # 样式入口
+        │   └── variables.scss   # 样式变量
+        ├── composables/
+        │   ├── index.js         # 组合式函数入口
+        │   ├── useVirtualTree.js
+        │   ├── useWorker.js
+        │   └── useTreeState.js
+        ├── types/
+        │   ├── index.ts         # 类型定义入口
+        │   └── tree.ts          # 树相关类型定义
+        └── utils/
+            ├── treeUtils.js     # 树操作工具函数
+            └── nodeCalculation.js # 节点计算工具
+```
+
+### 6. Git工作流
+- 分支管理：master、develop、feature等
+- 提交规范：使用Angular提交规范
+- 版本管理：语义化版本
+
+在本项目开发过程中，我已按照上述规范完成了初始化工作，搭建了基本框架并创建了符合规范的组件结构。后续开发将继续遵循这些规范，确保代码质量和一致性。
